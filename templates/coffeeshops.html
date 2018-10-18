@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<!--{% include "flash.html" %} -->
+
+<div class="row top-menu">
+	<div class="col-md-10"></div>
+	<div class="col-md-2 text-right"></div>
+</div>
+<div class="row divider blue">
+	<div class="col-md-12"></div>
+</div>
+<div class="row banner main">
+	<div class="col-md-1"></div>
+	<div class="col-md-11 padding-none">
+		<h1>Coffee Shops</h1>
+		
+	</div>
+</div>
+
+<div class="row padding-top padding-bottom">
+	<div class="col-md-1"></div>
+	<div class="col-md-10 padding-none">
+	<a href="{{url_for('newCoffeeshop')}}"><h3>Create a New Coffee Shop</h3></a>
+	</div>
+	<div class="col-md-1"></div>
+</div>
+		{% for coffeeshop in coffeeshops %}
+		<a href="{{url_for('coffeeshopMenu', coffeeshop_id = coffeeshop.id)}}">
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10 coffeeshop-list">
+				<h4>{{coffeeshop.name}}</h4>
+				</div>
+				<div class="col-md-1"></div>
+			</a>
+			</div>
+		<p><a href="{{url_for('editCoffeeshop', coffeeshop_id = coffeeshop.id)}}">Edit Coffee Shop</a></p>
+		<p><a href="{{url_for('deleteCoffeeshop', coffeeshop_id = coffeeshop.id)}}">Delete Coffee Shop</a></p>
+		{% endfor %}
+
+{% endblock %}
